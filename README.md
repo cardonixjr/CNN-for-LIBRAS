@@ -1,2 +1,6 @@
 # CNN-for-LIBRAS
 Um algoritmo para criação de bancos de dados, treinamento de CNN, processamento de dados e detecção em tempo real de sinais em LIBRAS
+
+_O presente trabalho apresenta a utilização de redes neurais convolucionais aplicadas à detecção e classificação de sinais contínuos da Linguagem Brasileira de Sinais (LIBRAS) em vídeos capturados por câmeras convencionais de computador. O objetivo deste trabalho é propor uma metodologia de processamento que possibilite a classificação de sinais realizados por pessoas de diferentes gêneros, portes físicos e cores de pele, sofrendo o mínimo de interferência possível do cenário de fundo dos vídeos e utilizando câmeras comuns de computador, de forma a ter uma metodologia acessível para diversas aplicações futuras. Para isso, serão utilizados o algoritmo MediaPipe para extração de dados dos vídeos, o algoritmo FastDTW para padronização destes dados, redes neurais baseadas nas bibliotecas TensorFlow e Keras. Todas estas ferramentas serão desenvolvidas na linguagem de programação Python para produzir uma rede neural treinada sobre diversos bancos de dados para reconhecer e diferenciar os sinais em LIBRAS._
+
+Palavras Chave - Rede Neural. Classificação de sinais. Linguagem Brasileira de Sinais. Acessibilidade.
