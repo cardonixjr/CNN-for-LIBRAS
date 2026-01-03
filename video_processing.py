@@ -1,10 +1,10 @@
 print("Importando pacotes para processamento de videos")
 import mediapipe as mp
-import os, cv2
+import os
 from mediapipe_utls import *
 from fastdtw import fastdtw
 from scipy.spatial.distance import euclidean
-import matplotlib.pyplot as plt
+import numpy as np
 print("Pacotes importados com sucesso")
     
 def load_npy(actions, data_path):
@@ -43,9 +43,9 @@ def aply_fastDTW(sequences, labels):
             greater_sequence = sequence
 
     adjusted_sequences = []
-    greater_index_map = np.arange(0,greater,1)
+    greater_index_map = np.reshape(np.arange(0,greater,1), (greater, 1))
     for sequence in sequences:
-        smaller_index_map = np.arange(0,len(sequence),1)
+        smaller_index_map = np.reshape(np.arange(0,len(sequence),1), (len(sequence),1))
         distance, path = fastdtw(greater_index_map, smaller_index_map, dist=euclidean)
         new_sequence = np.zeros([len(path), 258])
         count += 1
@@ -88,5 +88,28 @@ if __name__ == "__main__":
                "parar", "comecar", "dia", "surdo", "comer", "ola", "feliz"]
 
     sequences, labels = load_npy(actions, data_path)
-    x_train, x_test, y_train, y_test = split_and_shuffle(sequences, labels, perc=0.3)
-    
+    sequences, greater = aply_fastDTW(sequences, labels)
+#    x_train, x_test, y_train, y_test = split_and_shuffle(sequences, labels, perc=0.3)
+
+#    print("Salvando dados padronizados")
+#    NEW_DATA_PATH = "MP_Dataset_Standardized"
+#    old_action = "abraco"
+#    video_count = 0
+#
+#    os.makedirs(NEW_DATA_PATH, exist_ok=True)
+#
+#    for i in range(len(sequences)):
+#        
+#        action = actions[labels[i]]
+#        if action != old_action: 
+#            video_count =0
+#            
+#        os.makedirs(os.path.join(NEW_DATA_PATH, action, str(video_count)), exist_ok=True)
+#        for frame in range(len(sequences[i])):
+#            npy_path = os.path.join(NEW_DATA_PATH, action, str(video_count), f"{frame}.npy")
+#            np.save(npy_path,sequences[i][frame])
+#
+#
+#        video_count+=1
+#        if action != old_action: old_action = action
+ 
